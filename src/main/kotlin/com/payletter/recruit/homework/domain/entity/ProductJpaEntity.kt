@@ -1,5 +1,6 @@
 package com.payletter.recruit.homework.domain.entity
 
+import com.payletter.recruit.homework.common.dto.request.ModifyProductCommand
 import jakarta.persistence.*
 
 @Entity
@@ -9,28 +10,39 @@ class ProductJpaEntity(
     val productId: Long? = null,
 
     @Column(name = "CATEGORY_ID")
-    val categoryId: Long,
+    var categoryId: Long,
 
     @Column(name = "PRODUCT_COST")
-    val cost: Int,
+    var cost: Int,
 
     @Column(name = "PRODUCT_PRICE")
-    val price: Int,
+    var price: Int,
 
     @Column(name = "PRODUCT_NAME")
-    val productName: String,
+    var productName: String,
 
     @Column(name = "PRODUCT_DESCRIPTION")
-    val description: String,
+    var description: String,
 
     @Column(name = "PRODUCT_BARCODE")
-    val barcode: String,
+    var barcode: String,
 
     @Column(name = "PRODUCT_EXPIRATION_DATE")
-    val expirationDate: String,
+    var expirationDate: String,
 
     @Column(name = "PRODUCT_SIZE")
     @Enumerated(EnumType.STRING)
-    val productSize: Size
+    var productSize: Size
 
-) : BaseTimeEntity()
+) : BaseTimeEntity() {
+    fun modifyProduct(modifyProductCommand: ModifyProductCommand) {
+        categoryId = modifyProductCommand.categoryId
+        price = modifyProductCommand.price
+        cost = modifyProductCommand.cost
+        description = modifyProductCommand.description
+        productName = modifyProductCommand.productName
+        barcode = modifyProductCommand.barcode
+        expirationDate = modifyProductCommand.expirationDate
+        productSize = modifyProductCommand.productSize
+    }
+}

@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Pattern
 
-data class CreateProductCommand(
+data class ModifyProductCommand(
     @field:NotNull(message = "카테고리 아이디는 필수 입력 값입니다.")
     @field:Min(value = 1, message = "카테고리 아이디는 0 이상의 값이어야 합니다.")
     val categoryId: Long,
@@ -36,16 +36,4 @@ data class CreateProductCommand(
 
     @field:NotNull(message = "상품 사이즈는 필수 입력 값입니다.")
     val productSize: Size
-) {
-    fun mapToJpaEntity() =
-        ProductJpaEntity(
-            categoryId = categoryId,
-            cost = cost,
-            price = price,
-            description = description,
-            barcode = barcode,
-            expirationDate = expirationDate,
-            productSize = productSize,
-            productName = productName
-        )
-}
+)
