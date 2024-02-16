@@ -21,8 +21,8 @@ class GlobalCatcher {
             .body(errorResponse)
     }
 
-    @ExceptionHandler(Exception::class)
-    protected fun handleNormalException(exception: Exception) =
-        ResponseEntity.internalServerError()
-            .body(BaseResponse.normalExceptionResponse())
+//    @ExceptionHandler(Exception::class)
+//    protected fun handleNormalException(exception: Exception) =
+//        ResponseEntity.internalServerError()
+//            .body(BaseResponse.normalExceptionResponse())
 }

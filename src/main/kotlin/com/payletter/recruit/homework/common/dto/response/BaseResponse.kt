@@ -11,6 +11,11 @@ data class BaseResponse<T>(
             return BaseResponse(meta, data)
         }
 
+        fun ok() : BaseResponse<Any?> {
+            val meta = Meta(code = 200, message = "OK")
+            return BaseResponse(meta, null)
+        }
+
         fun <T> created(data: T) : BaseResponse<T> {
             val meta = Meta(code = 201, message = "CREATED")
             return BaseResponse(meta, data)

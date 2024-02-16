@@ -13,9 +13,9 @@ import java.time.LocalDateTime
 abstract class BaseTimeEntity protected constructor() {
     @CreatedDate
     @Column(name = "REG_DATE")
-    val regDate: LocalDateTime? = null
+    var regDate: LocalDateTime? = null
 
     @LastModifiedDate
     @Column(name = "MOD_DATE")
-    val modDate: LocalDateTime? = null
+    var modDate: LocalDateTime? = null
 }

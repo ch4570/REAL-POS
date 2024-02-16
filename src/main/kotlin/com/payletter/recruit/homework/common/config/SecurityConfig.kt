@@ -1,21 +1,21 @@
 package com.payletter.recruit.homework.common.config
 
-import com.payletter.recruit.homework.common.properties.AesEncryptionProperties
+import com.payletter.recruit.homework.common.filter.JwtAuthenticationFilter
+import com.payletter.recruit.homework.common.filter.JwtExceptionFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.crypto.encrypt.AesBytesEncryptor
-import org.springframework.security.crypto.factory.PasswordEncoderFactories
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
-    private val aesEncryptionProperties: AesEncryptionProperties
+    private val jwtAuthenticationFilter: JwtAuthenticationFilter,
+    private val jwtExceptionFilter: JwtExceptionFilter
 ) {
 
     @Bean
@@ -29,17 +29,11 @@ class SecurityConfig(
                 request.requestMatchers(HttpMethod.POST, "/api/members/**").permitAll()
                 request.requestMatchers(HttpMethod.POST, "/api/login/**").permitAll()
                 request.requestMatchers(HttpMethod.POST, "/api/logout/**").permitAll()
+                request.requestMatchers(HttpMethod.GET, "/api/token/**")
                 request.anyRequest().authenticated()
             }
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter::class.java)
             .build()
     }
-
-
-    @Bean
-    fun passwordEncoder() : PasswordEncoder =
-        PasswordEncoderFactories.createDelegatingPasswordEncoder()
-
-    @Bean
-    fun aesBytesEncryptor() : AesBytesEncryptor =
-        AesBytesEncryptor(aesEncryptionProperties.secretKey, aesEncryptionProperties.salt)
 }

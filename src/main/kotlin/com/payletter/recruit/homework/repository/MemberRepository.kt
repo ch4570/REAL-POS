@@ -7,4 +7,5 @@ import java.util.Optional
 interface MemberRepository : JpaRepository<MemberJpaEntity, Long> {
 
     fun findByPhoneNumber(phoneNumber: String) : Optional<MemberJpaEntity>
+    fun existsByPhoneNumber(phoneNumber: String) : Boolean
 }
