@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: local
+
+# Log Setting
+logging:
+  level:
+    org.hibernate.SQL: debug  # Hibernate ?? ??
+    org.hibernate.type.descriptor.sql.BasicBinder: trace # SQL? ????? ???? ??
+
+
+
+encrypt:
+  aes:
+    secretKey: 9e7f758f0bfa39d6d1c0222b3cc1a5b1
+    salt: b5c0b1c2f8e9d0a2
+
+jwt:
+  secretKey: e9013edcc71fee14ac0b407e65e2f187b99e0365d9a31cf13ea2680b79e134718cd9777a7eea4b3a21aa16018e53a2c687843451a72c99ca3ffc05f4f0a21b4d
