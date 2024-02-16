@@ -3,7 +3,7 @@ package com.payletter.recruit.homework.service.impl
 import com.payletter.recruit.homework.common.dto.request.LoginMemberCommand
 import com.payletter.recruit.homework.common.exception.CustomException
 import com.payletter.recruit.homework.common.exception.ErrorCode.*
-import com.payletter.recruit.homework.common.util.EncryptUtil
+import com.payletter.recruit.homework.common.util.BcryptPasswordEncrypter
 import com.payletter.recruit.homework.common.util.JwtUtil
 import com.payletter.recruit.homework.repository.MemberRepository
 import com.payletter.recruit.homework.service.LoginMemberUseCase
@@ -15,14 +15,14 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class LoginMemberService(
     private val jwtUtil: JwtUtil,
-    private val encryptUtil: EncryptUtil,
+    private val encryptUtil: BcryptPasswordEncrypter,
     private val memberRepository: MemberRepository,
     private val saveJwtTokenUseCase: SaveJwtTokenUseCase
 ) : LoginMemberUseCase {
 
     override fun login(loginMemberCommand: LoginMemberCommand): String {
         val findMember =
-            memberRepository.findByPhoneNumber(encryptUtil.encryptString(loginMemberCommand.phoneNumber))
+            memberRepository.findByPhoneNumber(loginMemberCommand.phoneNumber)
                 .orElseThrow { CustomException(NOT_PRESENT_MEMBER)}
 
         // 회원 비밀번호 일치여부 확인

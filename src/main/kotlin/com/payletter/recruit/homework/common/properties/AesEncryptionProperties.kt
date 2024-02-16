@@ -5,5 +5,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 @ConfigurationProperties(prefix = "encrypt.aes")
 class AesEncryptionProperties(
     val secretKey: String,
-    val salt: String
+    val algorithm: String
 )

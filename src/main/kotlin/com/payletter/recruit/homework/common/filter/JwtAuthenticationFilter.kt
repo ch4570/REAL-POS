@@ -1,6 +1,5 @@
 package com.payletter.recruit.homework.common.filter
 
-import com.payletter.recruit.homework.common.util.EncryptUtil
 import com.payletter.recruit.homework.common.util.JwtUtil
 import com.payletter.recruit.homework.service.LoadMemberUseCase
 import io.jsonwebtoken.JwtException
@@ -18,7 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter
 class JwtAuthenticationFilter(
     private val jwtUtil: JwtUtil,
     private val loadMemberUseCase: LoadMemberUseCase,
-    private val encryptUtil: EncryptUtil
 ) : OncePerRequestFilter() {
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -37,9 +35,7 @@ class JwtAuthenticationFilter(
 
         if (!isAuthorized) throw JwtException("토큰이 유효하지 않습니다.")
 
-        val findMember = loadMemberUseCase.loadUserByPhoneNumber(encryptUtil.encryptString(
-            jwtUtil.extractPhoneNumber(token))
-        )
+        val findMember = loadMemberUseCase.loadUserByPhoneNumber(jwtUtil.extractPhoneNumber(token))
 
         val securityMember = UsernamePasswordAuthenticationToken(
             findMember, null, listOf()

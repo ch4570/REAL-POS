@@ -27,7 +27,7 @@ class ProductJpaEntity(
     val barcode: String,
 
     @Column(name = "PRODUCT_EXPIRATION_DATE")
-    val expirationData: String,
+    val expirationDate: String,
 
     @Column(name = "PRODUCT_SIZE")
     @Enumerated(EnumType.STRING)
