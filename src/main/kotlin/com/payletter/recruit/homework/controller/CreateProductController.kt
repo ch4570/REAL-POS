@@ -19,14 +19,14 @@ class CreateProductController(
 ) {
 
     @PostMapping("/api/products")
-    fun createProduct(@RequestBody @Valid createProductCommand: CreateProductCommand, bindingResult: BindingResult) :
+    fun createProduct(@RequestBody @Valid command: CreateProductCommand, bindingResult: BindingResult) :
             ResponseEntity<BaseResponse<Long>> {
         if (bindingResult.hasErrors()) {
             println(bindingResult.fieldError)
             throw CustomException(INVALID_INPUT_DATA)
         }
 
-        val savedProductId = createProductUseCase.createProduct(createProductCommand)
+        val savedProductId = createProductUseCase.createProduct(command)
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(BaseResponse.created(savedProductId))

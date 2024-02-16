@@ -1,6 +1,30 @@
 spring:
   profiles:
     active: local
+    include: jwt
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/your_database_name?useUnicode=true&characterEncoding=utf-8
+
+  # JPA Open-In-view
+  jpa:
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: true
+
+
+decorator.datasource.p6spy:
+  enable-logging: true
+  multiline: true
+  logging: slf4j
+  tracing.include-parameter-values: true
+
 
 # Log Setting
 logging:
@@ -10,10 +34,3 @@ logging:
 
 
 
-encrypt:
-  aes:
-    secretKey: 9e7f758f0bfa39d6d1c0222b3cc1a5b1
-    algorithm: AES
-
-jwt:
-  secretKey: e9013edcc71fee14ac0b407e65e2f187b99e0365d9a31cf13ea2680b79e134718cd9777a7eea4b3a21aa16018e53a2c687843451a72c99ca3ffc05f4f0a21b4d

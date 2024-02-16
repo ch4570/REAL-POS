@@ -19,11 +19,11 @@ class CreateMemberController(
 ) {
 
     @PostMapping("/api/members")
-    fun createMember(@RequestBody @Valid createMemberCommand: CreateMemberCommand, bindingResult: BindingResult):
+    fun createMember(@RequestBody @Valid command: CreateMemberCommand, bindingResult: BindingResult):
             ResponseEntity<BaseResponse<Long>> {
 
         if (bindingResult.hasErrors()) throw CustomException(INVALID_INPUT_DATA)
-        val savedMemberId = createMemberUseCase.createUser(createMemberCommand)
+        val savedMemberId = createMemberUseCase.createUser(command)
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(BaseResponse.created(savedMemberId))

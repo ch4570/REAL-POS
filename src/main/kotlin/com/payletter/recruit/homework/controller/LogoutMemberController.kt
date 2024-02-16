@@ -25,7 +25,6 @@ class LogoutMemberController(
         if (bindingResult.hasErrors()) throw CustomException(INVALID_INPUT_DATA)
 
         logoutMemberUseCase.logout(logoutMemberCommand)
-        return ResponseEntity.ok()
-            .body(BaseResponse.ok())
+        return ResponseEntity.ok(BaseResponse.ok())
     }
 }

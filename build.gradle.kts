@@ -29,7 +29,9 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+	implementation ("com.mysql:mysql-connector-j")
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
+	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
 
 	// QueryDSL
 	implementation("com.querydsl:querydsl-jpa:$querydslVersion:jakarta")

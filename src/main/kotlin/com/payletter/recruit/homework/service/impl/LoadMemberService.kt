@@ -16,7 +16,7 @@ class LoadMemberService(
 
     override fun loadUserByPhoneNumber(phoneNumber: String) : Member {
         val findMember = memberRepository.findByPhoneNumber(phoneNumber)
-            .orElseThrow { CustomException(NOT_PRESENT_MEMBER) }
+            .orElseThrow { CustomException(NOT_EXISTS_MEMBER) }
 
         return Member(findMember.phoneNumber)
     }

@@ -21,13 +21,18 @@ data class BaseResponse<T>(
             return BaseResponse(meta, data)
         }
 
+        fun invalidInputExceptionResponse() : BaseResponse<Any?> {
+            val meta = Meta(code = 400, message = "잘못된 입력 값을 전송했습니다.")
+            return BaseResponse(meta, null)
+        }
+
         fun customExceptionResponse(code: Int, message: String) : BaseResponse<Any?> {
             val meta = Meta(code = code, message = message)
             return BaseResponse(meta, null)
         }
 
         fun normalExceptionResponse() : BaseResponse<Any?> {
-            val meta = Meta(code = 500, message = "처리 중 에러가 발생했습니다. 확인 후 다시 시도해주시기 바랍니다.")
+            val meta = Meta(code = 500, message = "처리 중 에러가 발생했습니다.")
             return BaseResponse(meta, null)
         }
     }

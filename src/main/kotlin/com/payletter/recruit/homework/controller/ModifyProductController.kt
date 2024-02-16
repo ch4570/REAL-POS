@@ -26,7 +26,6 @@ class ModifyProductController(
         if (bindingResult.hasErrors()) throw CustomException(ErrorCode.INVALID_INPUT_DATA)
         modifyProductUseCase.modifyProduct(productId, modifyProductCommand)
 
-        return ResponseEntity.ok()
-            .body(BaseResponse.ok())
+        return ResponseEntity.ok(BaseResponse.ok())
     }
 }

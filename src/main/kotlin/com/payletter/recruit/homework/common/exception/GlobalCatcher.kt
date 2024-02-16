@@ -2,6 +2,8 @@ package com.payletter.recruit.homework.common.exception
 
 import com.payletter.recruit.homework.common.dto.response.BaseResponse
 import org.springframework.http.ResponseEntity
+import org.springframework.http.converter.HttpMessageNotReadableException
+import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import java.lang.Exception
@@ -25,4 +27,10 @@ class GlobalCatcher {
 //    protected fun handleNormalException(exception: Exception) =
 //        ResponseEntity.internalServerError()
 //            .body(BaseResponse.normalExceptionResponse())
+
+    @ExceptionHandler(HttpMessageNotReadableException::class,
+        MethodArgumentNotValidException::class)
+    protected fun handleInvalidInputException() =
+        ResponseEntity.badRequest()
+            .body(BaseResponse.invalidInputExceptionResponse())
 }

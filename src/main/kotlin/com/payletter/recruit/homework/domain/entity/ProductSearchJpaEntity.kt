@@ -7,11 +7,15 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 
 @Entity
-class Category(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CATEGORY_ID")
-    val categoryId: Long? = null,
+class ProductSearchJpaEntity(
 
-    @Column(name = "CATEGORY_NAME")
-    val categoryName: String
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PRODUCT_SEARCH_ID")
+    val productSearchId: Long? = null,
+
+    @Column(name = "PRODUCT_ID")
+    val productId: Long,
+
+    @Column(name = "PRODUCT_SEARCH_KEYWORD")
+    val productSearchKeyword: String
 ) : BaseTimeEntity()

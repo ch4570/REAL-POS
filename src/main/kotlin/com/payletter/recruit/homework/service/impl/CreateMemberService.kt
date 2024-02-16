@@ -17,14 +17,14 @@ class CreateMemberService(
     private val passwordEncrypter: PasswordEncrypter
 ) : CreateMemberUseCase {
 
-    override fun createUser(userCommand: CreateMemberCommand): Long {
+    override fun createUser(command: CreateMemberCommand): Long {
 
-        val isPresent = memberRepository.existsByPhoneNumber(userCommand.phoneNumber)
-        if (isPresent) throw CustomException(IS_ALREADY_EXIST_MEMBER)
+        val isPresent = memberRepository.existsByPhoneNumber(command.phoneNumber)
+        if (isPresent) throw CustomException(IS_ALREADY_EXISTS_MEMBER)
 
         val member = MemberJpaEntity(
-            phoneNumber = userCommand.phoneNumber,
-            password = passwordEncrypter.encodeString(userCommand.password)
+            phoneNumber = command.phoneNumber,
+            password = passwordEncrypter.encodeString(command.password)
         )
 
         memberRepository.save(member)

@@ -1,5 +1,6 @@
 package com.payletter.recruit.homework.common.dto.request
 
+import com.payletter.recruit.homework.common.util.LocalDateTimeConverter.Companion.convertToLocalDateTime
 import com.payletter.recruit.homework.domain.entity.ProductJpaEntity
 import com.payletter.recruit.homework.domain.entity.Size
 import jakarta.validation.constraints.Min
@@ -44,7 +45,7 @@ data class CreateProductCommand(
             price = price,
             description = description,
             barcode = barcode,
-            expirationDate = expirationDate,
+            expirationDate = convertToLocalDateTime(expirationDate),
             productSize = productSize,
             productName = productName
         )

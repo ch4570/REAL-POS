@@ -1,7 +1,9 @@
 package com.payletter.recruit.homework.domain.entity
 
 import com.payletter.recruit.homework.common.dto.request.ModifyProductCommand
+import com.payletter.recruit.homework.common.util.LocalDateTimeConverter.Companion.convertToLocalDateTime
 import jakarta.persistence.*
+import java.time.LocalDateTime
 
 @Entity
 class ProductJpaEntity(
@@ -28,7 +30,7 @@ class ProductJpaEntity(
     var barcode: String,
 
     @Column(name = "PRODUCT_EXPIRATION_DATE")
-    var expirationDate: String,
+    var expirationDate: LocalDateTime,
 
     @Column(name = "PRODUCT_SIZE")
     @Enumerated(EnumType.STRING)
@@ -42,7 +44,7 @@ class ProductJpaEntity(
         description = modifyProductCommand.description
         productName = modifyProductCommand.productName
         barcode = modifyProductCommand.barcode
-        expirationDate = modifyProductCommand.expirationDate
+        expirationDate = convertToLocalDateTime(modifyProductCommand.expirationDate)
         productSize = modifyProductCommand.productSize
     }
 }

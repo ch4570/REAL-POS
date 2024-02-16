@@ -24,7 +24,6 @@ class LoginMemberController(
         if (bindingResult.hasErrors()) throw CustomException(INVALID_INPUT_DATA)
         val jwtToken = loginMemberService.login(loginMemberCommand)
 
-        return ResponseEntity.ok()
-            .body(BaseResponse.ok(jwtToken))
+        return ResponseEntity.ok(BaseResponse.ok(jwtToken))
     }
 }
