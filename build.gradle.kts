@@ -9,7 +9,7 @@ plugins {
 	kotlin("kapt") version "1.8.22"
 }
 
-group = "com.payletter.recruit"
+group = "com.payhere.recruit"
 version = "0.0.1-SNAPSHOT"
 
 java {
