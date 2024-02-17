@@ -40,7 +40,7 @@ class CreateMemberService(
             password = passwordEncrypter.encodeString(command.password)
         )
 
-        memberRepository.save(member)
-        return member.memberId!!
+        val savedMember = memberRepository.save(member)
+        return savedMember.memberId!!
     }
 }

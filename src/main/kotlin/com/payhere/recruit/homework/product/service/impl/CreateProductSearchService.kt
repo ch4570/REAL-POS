@@ -23,13 +23,15 @@ class CreateProductSearchService(
      * @param productId 검색과 관련된 제품의 ID입니다.
      * @param productSearchKeyword 제품과 연결할 검색 키워드입니다.
      */
-    override fun createProductSearch(productId: Long, productSearchKeyword: String) {
+    override fun createProductSearch(productId: Long, productSearchKeyword: String) : Long {
         val productSearchEntity = ProductSearchJpaEntity(
             productId = productId,
             productSearchKeyword = convertToInitial(productSearchKeyword)
         )
 
-        productSearchRepository.save(productSearchEntity)
+        val savedEntity = productSearchRepository.save(productSearchEntity)
+
+        return savedEntity.productSearchId!!
     }
 
     private fun convertToInitial(productSearchKeyword: String): String {

@@ -35,12 +35,12 @@ class CreateProductService(
         val isDuplicated = productRepository.existsByProductName(productEntity.productName)
         if (isDuplicated) throw CustomException(IS_ALREADY_EXISTS_PRODUCT)
 
-        productRepository.save(productEntity)
+        val savedEntity = productRepository.save(productEntity)
         createProductSearchUseCase.createProductSearch(
-            productId = productEntity.productId!!,
+            productId = savedEntity.productId!!,
             productSearchKeyword = productEntity.productName
         )
 
-        return productEntity.productId
+        return savedEntity.productId
     }
 }

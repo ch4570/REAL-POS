@@ -15,14 +15,14 @@ import org.springframework.transaction.annotation.Transactional
  *
  * @property passwordEncrypter 비밀번호를 암호화하기 위한 PasswordEncrypter 인스턴스입니다.
  * @property memberRepository 회원 엔티티를 관리하기 위한 MemberRepository 인스턴스입니다.
- * @property saveJwtTokenUseCase JWT 토큰을 생성하기 위한 CreateJwtTokenUseCase 인스턴스입니다.
+ * @property createJwtTokenUseCase JWT 토큰을 생성하기 위한 CreateJwtTokenUseCase 인스턴스입니다.
  */
 @Service
 @Transactional
 class LoginMemberService(
     private val passwordEncrypter: PasswordEncrypter,
     private val memberRepository: MemberRepository,
-    private val saveJwtTokenUseCase: CreateJwtTokenUseCase
+    private val createJwtTokenUseCase: CreateJwtTokenUseCase
 ) : LoginMemberUseCase {
 
     /**
@@ -43,7 +43,6 @@ class LoginMemberService(
 
         if (!isAbleToLogin) throw CustomException(INVALID_LOGIN_ID_OR_PASSWORD)
 
-        // Token DB 저장
-        return saveJwtTokenUseCase.createJwtToken(findMember.phoneNumber, findMember.memberId!!)
+        return createJwtTokenUseCase.createJwtToken(findMember.phoneNumber, findMember.memberId!!)
     }
 }

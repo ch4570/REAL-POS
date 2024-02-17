@@ -10,6 +10,7 @@ interface CreateProductSearchUseCase {
      *
      * @param productId 검색과 관련된 제품의 ID입니다.
      * @param productSearchKeyword 제품과 연관된 검색 키워드입니다.
+     * @return 생성된 제품 검색 키워드의 ID입니다.
      */
-    fun createProductSearch(productId: Long, productSearchKeyword: String)
+    fun createProductSearch(productId: Long, productSearchKeyword: String) : Long
 }
