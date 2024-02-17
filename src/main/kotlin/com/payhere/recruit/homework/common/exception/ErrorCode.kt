@@ -3,6 +3,9 @@ package com.payhere.recruit.homework.common.exception
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.*
 
+/**
+ * Enum class representing error codes along with their corresponding HTTP status and message.
+ */
 enum class ErrorCode(
     val status: HttpStatus,
     val message: String

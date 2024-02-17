@@ -12,11 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * Controller class for logging in a member.
+ *
+ * @property loginMemberService The LoginMemberService instance for member login.
+ */
 @RestController
 class LoginMemberController(
     private val loginMemberService: LoginMemberService,
 ) {
 
+    /**
+     * Handles POST requests to log in a member.
+     *
+     * @param loginMemberCommand The command object containing login credentials.
+     * @param bindingResult The BindingResult object for validation errors.
+     * @return A ResponseEntity containing the response data.
+     * @throws CustomException if there are validation errors.
+     */
     @PostMapping("/api/login")
     fun loginMember(@RequestBody @Valid loginMemberCommand: LoginMemberCommand, bindingResult: BindingResult) :
             ResponseEntity<BaseResponse<String>> {

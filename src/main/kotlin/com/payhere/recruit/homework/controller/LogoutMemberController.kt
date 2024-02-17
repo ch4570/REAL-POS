@@ -11,11 +11,24 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * Controller class for logging out a member.
+ *
+ * @property logoutMemberUseCase The LogoutMemberUseCase instance for member logout.
+ */
 @RestController
 class LogoutMemberController(
     private val logoutMemberUseCase: LogoutMemberUseCase
 ) {
 
+    /**
+     * Handles POST requests to log out a member.
+     *
+     * @param logoutMemberCommand The command object containing logout details.
+     * @param bindingResult The BindingResult object for validation errors.
+     * @return A ResponseEntity containing the response data.
+     * @throws CustomException if there are validation errors.
+     */
     @PostMapping("/api/logout")
     fun logoutMember(@RequestBody logoutMemberCommand: LogoutMemberCommand, bindingResult: BindingResult) :
             ResponseEntity<BaseResponse<Any?>> {

@@ -13,11 +13,24 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+/**
+ * Controller class for creating new products.
+ *
+ * @property createProductUseCase The CreateProductUseCase instance for creating products.
+ */
 @RestController
 class CreateProductController(
     private val createProductUseCase: CreateProductUseCase
 ) {
 
+    /**
+     * Handles POST requests to create a new product.
+     *
+     * @param command The command object containing data for creating the product.
+     * @param bindingResult The BindingResult object for validation errors.
+     * @return A ResponseEntity containing the response data.
+     * @throws CustomException if there are validation errors.
+     */
     @PostMapping("/api/products")
     fun createProduct(@RequestBody @Valid command: CreateProductCommand, bindingResult: BindingResult) :
             ResponseEntity<BaseResponse<Long>> {

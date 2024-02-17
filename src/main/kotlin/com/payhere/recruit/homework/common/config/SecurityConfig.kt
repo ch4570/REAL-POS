@@ -11,7 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-
+/**
+ * Configuration class for security-related settings.
+ */
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
@@ -19,8 +21,14 @@ class SecurityConfig(
     private val jwtExceptionFilter: JwtExceptionFilter
 ) {
 
+    /**
+     * Defines the security filter chain.
+     *
+     * @param http The HttpSecurity object to configure security settings.
+     * @return The SecurityFilterChain instance defining the security filter chain.
+     */
     @Bean
-    fun securityFilterChain(http: HttpSecurity) : SecurityFilterChain {
+    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         return http
             .httpBasic { it.disable() }
             .csrf { it.disable() }

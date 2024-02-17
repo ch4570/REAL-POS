@@ -7,6 +7,11 @@ import org.springframework.stereotype.Component
 import java.util.*
 import javax.crypto.spec.SecretKeySpec
 
+/**
+ * Utility class for JWT token generation, verification, and extraction.
+ *
+ * @property jwtSecretProperties The JwtSecretProperties instance containing JWT secret key.
+ */
 @Component
 class JwtUtil(
     private val jwtSecretProperties: JwtSecretProperties
@@ -15,8 +20,14 @@ class JwtUtil(
     private val secretKey = Base64.getEncoder()
         .encodeToString(jwtSecretProperties.secretKey.toByteArray())
 
-    fun generateToken(phoneNumber: String) : String {
-        // 토큰 유효기간을 1일로 설정 -> 원활한 테스트를 위해 기간을 길게 산정
+    /**
+     * Generates a JWT token for the given phone number.
+     *
+     * @param phoneNumber The phone number to include in the token.
+     * @return The generated JWT token.
+     */
+    fun generateToken(phoneNumber: String): String {
+        // Set token expiration period to 1 day (for smoother testing, the period is set longer)
         val tokenPeriod = 1000L * 60L * 60L * 24
         val claims = Jwts.claims().setSubject(phoneNumber)
         val now = Date()
@@ -29,6 +40,12 @@ class JwtUtil(
             .compact()
     }
 
+    /**
+     * Verifies the validity of a JWT token.
+     *
+     * @param token The JWT token to verify.
+     * @return true if the token is valid, false otherwise.
+     */
     fun verifyToken(token: String) =
         try {
             val claims = Jwts.parserBuilder()
@@ -41,6 +58,12 @@ class JwtUtil(
             false
         }
 
+    /**
+     * Extracts the phone number from a JWT token.
+     *
+     * @param token The JWT token from which to extract the phone number.
+     * @return The extracted phone number.
+     */
     fun extractPhoneNumber(token: String): String =
         Jwts.parserBuilder().setSigningKey(secretKey.toByteArray())
             .build().parseClaimsJws(token)

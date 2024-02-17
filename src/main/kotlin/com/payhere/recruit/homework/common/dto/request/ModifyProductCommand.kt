@@ -6,6 +6,18 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Pattern
 
+/**
+ * Data class representing a command for modifying a product.
+ *
+ * @property categoryId The ID of the category to which the product belongs.
+ * @property price The selling price of the product.
+ * @property cost The cost of the product.
+ * @property description The description of the product.
+ * @property productName The name of the product.
+ * @property barcode The barcode of the product.
+ * @property expirationDate The expiration date of the product.
+ * @property productSize The size of the product.
+ */
 data class ModifyProductCommand(
     @field:NotNull(message = "카테고리 아이디는 필수 입력 값입니다.")
     @field:Min(value = 1, message = "카테고리 아이디는 0 이상의 값이어야 합니다.")
@@ -29,7 +41,8 @@ data class ModifyProductCommand(
     val barcode: String,
 
     @field:NotBlank(message = "유통 기한은 필수 입력 값입니다.")
-    @field:Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\$",
+    @field:Pattern(
+        regexp = "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\$",
         message = "날짜 형식에 맞지 않는 입력입니다. yyyy-MM-dd HH:mm:ss 형식을 맞춰주세요")
     val expirationDate: String,
 

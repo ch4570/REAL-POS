@@ -6,12 +6,20 @@ import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 
+/**
+ * Component class for initializing data upon application startup.
+ *
+ * @property categoryRepository The CategoryRepository instance for managing category data.
+ */
 @Component
 @Transactional
 class DataInitListener(
     private val categoryRepository: CategoryRepository
 ) {
 
+    /**
+     * Initializes data upon application startup.
+     */
     @EventListener(ApplicationReadyEvent::class)
     fun initData() {
         val coffeeCategory = CategoryJpaEntity(categoryName = "커피")

@@ -4,6 +4,12 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
 
+/**
+ * Data class representing a command to create a member.
+ *
+ * @property phoneNumber The phone number of the member.
+ * @property password The password of the member.
+ */
 data class CreateMemberCommand(
     @field:NotBlank(message = "휴대폰 번호는 필수 입력 항목입니다.")
     @field:Pattern(regexp = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}\$", message = "휴대폰 번호 형식에 맞지 않습니다.")

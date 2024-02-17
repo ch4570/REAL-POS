@@ -13,11 +13,25 @@ import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
 import org.springframework.web.filter.OncePerRequestFilter
 
+/**
+ * Component class for filtering and authenticating JWT tokens in requests.
+ *
+ * @property jwtUtil The JwtUtil instance for token operations.
+ * @property loadMemberUseCase The LoadMemberUseCase instance for loading member details.
+ */
 @Component
 class JwtAuthenticationFilter(
     private val jwtUtil: JwtUtil,
     private val loadMemberUseCase: LoadMemberUseCase,
 ) : OncePerRequestFilter() {
+
+    /**
+     * Filters and authenticates JWT tokens in incoming requests.
+     *
+     * @param request The HttpServletRequest object representing the incoming request.
+     * @param response The HttpServletResponse object representing the response.
+     * @param filterChain The FilterChain object for invoking the next filter in the chain.
+     */
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
@@ -45,6 +59,4 @@ class JwtAuthenticationFilter(
 
         filterChain.doFilter(request, response)
     }
-
-
 }

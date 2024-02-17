@@ -11,11 +11,23 @@ import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
+/**
+ * Component class for handling JWT exceptions and providing appropriate error responses.
+ *
+ * @property objectMapper The ObjectMapper instance for JSON serialization.
+ */
 @Component
 class JwtExceptionFilter(
     private val objectMapper: ObjectMapper
 ) : OncePerRequestFilter() {
 
+    /**
+     * Filters incoming requests and handles JWT exceptions.
+     *
+     * @param request The HttpServletRequest object representing the incoming request.
+     * @param response The HttpServletResponse object representing the response.
+     * @param filterChain The FilterChain object for invoking the next filter in the chain.
+     */
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,

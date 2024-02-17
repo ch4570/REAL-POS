@@ -10,6 +10,12 @@ import com.payhere.recruit.homework.service.CreateMemberUseCase
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
+/**
+ * Service class for creating members.
+ *
+ * @property memberRepository The MemberRepository instance for managing member entities.
+ * @property passwordEncrypter The PasswordEncrypter instance for encrypting passwords.
+ */
 @Service
 @Transactional
 class CreateMemberService(
@@ -17,6 +23,13 @@ class CreateMemberService(
     private val passwordEncrypter: PasswordEncrypter
 ) : CreateMemberUseCase {
 
+    /**
+     * Creates a new member based on the provided command.
+     *
+     * @param command The command containing data for creating the member.
+     * @return The ID of the created member.
+     * @throws CustomException if a member with the same phone number already exists.
+     */
     override fun createUser(command: CreateMemberCommand): Long {
 
         val isPresent = memberRepository.existsByPhoneNumber(command.phoneNumber)

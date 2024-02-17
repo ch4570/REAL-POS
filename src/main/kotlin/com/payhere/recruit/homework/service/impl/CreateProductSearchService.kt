@@ -6,11 +6,23 @@ import com.payhere.recruit.homework.service.CreateProductSearchUseCase
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
+/**
+ * Service class for creating product searches.
+ *
+ * @property productSearchRepository The ProductSearchRepository instance for managing product search entities.
+ */
 @Service
 @Transactional
 class CreateProductSearchService(
     private val productSearchRepository: ProductSearchRepository
 ) : CreateProductSearchUseCase {
+
+    /**
+     * Creates a product search entry for the given product ID and search keyword.
+     *
+     * @param productId The ID of the product to associate with the search.
+     * @param productSearchKeyword The search keyword to associate with the product.
+     */
     override fun createProductSearch(productId: Long, productSearchKeyword: String) {
         println("초성 저장 -> 원본 {$productSearchKeyword}, 변환본 {${convertToInitial(productSearchKeyword)}}")
         val productSearchEntity = ProductSearchJpaEntity(
@@ -41,5 +53,4 @@ class CreateProductSearchService(
 
         return result.toString()
     }
-
 }

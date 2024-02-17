@@ -10,6 +10,13 @@ import com.payhere.recruit.homework.service.CreateJwtTokenUseCase
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
+/**
+ * Service class for logging in members.
+ *
+ * @property passwordEncrypter The PasswordEncrypter instance for encrypting passwords.
+ * @property memberRepository The MemberRepository instance for managing member entities.
+ * @property saveJwtTokenUseCase The CreateJwtTokenUseCase instance for creating JWT tokens.
+ */
 @Service
 @Transactional
 class LoginMemberService(
@@ -18,6 +25,13 @@ class LoginMemberService(
     private val saveJwtTokenUseCase: CreateJwtTokenUseCase
 ) : LoginMemberUseCase {
 
+    /**
+     * Logs in a member based on the provided login command.
+     *
+     * @param loginMemberCommand The login command containing phone number and password.
+     * @return The generated JWT token upon successful login.
+     * @throws CustomException if the provided credentials are invalid or the member does not exist.
+     */
     override fun login(loginMemberCommand: LoginMemberCommand): String {
         val findMember =
             memberRepository.findByPhoneNumber(loginMemberCommand.phoneNumber)
@@ -32,6 +46,4 @@ class LoginMemberService(
         // Token DB 저장
         return saveJwtTokenUseCase.createJwtToken(findMember.phoneNumber, findMember.memberId!!)
     }
-
-
 }

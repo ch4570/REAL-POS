@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 
+/**
+ * Configuration class for JPA-related settings and beans.
+ */
 @Configuration
 @EnableJpaAuditing
 class JpaConfig(
@@ -14,6 +17,11 @@ class JpaConfig(
     private val entityManager: EntityManager
 ) {
 
+    /**
+     * Defines a bean for creating a JPAQueryFactory instance.
+     *
+     * @return A JPAQueryFactory instance created using the provided EntityManager.
+     */
     @Bean
-    fun jpaQueryFactory() : JPAQueryFactory = JPAQueryFactory(entityManager)
+    fun jpaQueryFactory(): JPAQueryFactory = JPAQueryFactory(entityManager)
 }
