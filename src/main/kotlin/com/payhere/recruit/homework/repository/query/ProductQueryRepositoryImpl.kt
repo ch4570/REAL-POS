@@ -5,7 +5,6 @@ import com.payhere.recruit.homework.common.dto.response.ProductResponse
 import com.payhere.recruit.homework.domain.entity.QCategoryJpaEntity.*
 import com.payhere.recruit.homework.domain.entity.QProductJpaEntity.*
 import com.payhere.recruit.homework.domain.entity.QProductSearchJpaEntity.*
-import com.payhere.recruit.homework.repository.ProductSearchRepository
 import com.querydsl.core.types.Projections
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
@@ -15,8 +14,7 @@ import java.util.*
 
 @Repository
 class ProductQueryRepositoryImpl(
-    private val jpaQueryFactory: JPAQueryFactory,
-    private val productSearchRepository: ProductSearchRepository
+    private val jpaQueryFactory: JPAQueryFactory
 ) : ProductQueryRepository {
     override fun loadProductDetail(productId: Long) : Optional<ProductDetailResponse> {
         val findProduct = jpaQueryFactory.select(
