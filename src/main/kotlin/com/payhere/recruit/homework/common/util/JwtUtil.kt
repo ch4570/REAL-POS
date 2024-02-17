@@ -8,9 +8,9 @@ import java.util.*
 import javax.crypto.spec.SecretKeySpec
 
 /**
- * Utility class for JWT token generation, verification, and extraction.
+ * JWT 토큰 생성, 검증 및 추출을 위한 유틸리티 클래스입니다.
  *
- * @property jwtSecretProperties The JwtSecretProperties instance containing JWT secret key.
+ * @property jwtSecretProperties JWT 비밀 키가 포함된 JwtSecretProperties 인스턴스입니다.
  */
 @Component
 class JwtUtil(
@@ -21,13 +21,13 @@ class JwtUtil(
         .encodeToString(jwtSecretProperties.secretKey.toByteArray())
 
     /**
-     * Generates a JWT token for the given phone number.
+     * 주어진 전화번호를 사용하여 JWT 토큰을 생성합니다.
      *
-     * @param phoneNumber The phone number to include in the token.
-     * @return The generated JWT token.
+     * @param phoneNumber 토큰에 포함할 전화번호입니다.
+     * @return 생성된 JWT 토큰입니다.
      */
     fun generateToken(phoneNumber: String): String {
-        // Set token expiration period to 1 day (for smoother testing, the period is set longer)
+        // 토큰 만료 기간을 1일로 설정합니다 (더 부드러운 테스트를 위해 기간을 더 길게 설정합니다).
         val tokenPeriod = 1000L * 60L * 60L * 24
         val claims = Jwts.claims().setSubject(phoneNumber)
         val now = Date()
@@ -41,10 +41,10 @@ class JwtUtil(
     }
 
     /**
-     * Verifies the validity of a JWT token.
+     * JWT 토큰의 유효성을 검증합니다.
      *
-     * @param token The JWT token to verify.
-     * @return true if the token is valid, false otherwise.
+     * @param token 검증할 JWT 토큰입니다.
+     * @return 토큰이 유효하면 true, 그렇지 않으면 false입니다.
      */
     fun verifyToken(token: String) =
         try {
@@ -59,13 +59,14 @@ class JwtUtil(
         }
 
     /**
-     * Extracts the phone number from a JWT token.
+     * JWT 토큰에서 전화번호를 추출합니다.
      *
-     * @param token The JWT token from which to extract the phone number.
-     * @return The extracted phone number.
+     * @param token 전화번호를 추출할 JWT 토큰입니다.
+     * @return 추출된 전화번호입니다.
      */
     fun extractPhoneNumber(token: String): String =
         Jwts.parserBuilder().setSigningKey(secretKey.toByteArray())
             .build().parseClaimsJws(token)
             .body.subject
 }
+

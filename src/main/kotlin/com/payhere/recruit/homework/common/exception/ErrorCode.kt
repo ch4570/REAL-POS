@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.*
 
 /**
- * Enum class representing error codes along with their corresponding HTTP status and message.
+ * HTTP 상태 코드 및 해당하는 메시지와 함께 오류 코드를 나타내는 열거형 클래스입니다.
  */
 enum class ErrorCode(
     val status: HttpStatus,

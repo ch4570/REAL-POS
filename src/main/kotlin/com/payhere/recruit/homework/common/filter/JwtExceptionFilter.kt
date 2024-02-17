@@ -1,7 +1,7 @@
 package com.payhere.recruit.homework.common.filter
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.payhere.recruit.homework.common.dto.response.BaseResponse
+import com.payhere.recruit.homework.common.dto.BaseResponse
 import io.jsonwebtoken.JwtException
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
 /**
- * Component class for handling JWT exceptions and providing appropriate error responses.
+ * JWT 예외를 처리하고 적절한 오류 응답을 제공하는 컴포넌트 클래스입니다.
  *
- * @property objectMapper The ObjectMapper instance for JSON serialization.
+ * @property objectMapper JSON 직렬화를 위한 ObjectMapper 인스턴스입니다.
  */
 @Component
 class JwtExceptionFilter(
@@ -22,11 +22,11 @@ class JwtExceptionFilter(
 ) : OncePerRequestFilter() {
 
     /**
-     * Filters incoming requests and handles JWT exceptions.
+     * 수신된 요청을 필터링하고 JWT 예외를 처리합니다.
      *
-     * @param request The HttpServletRequest object representing the incoming request.
-     * @param response The HttpServletResponse object representing the response.
-     * @param filterChain The FilterChain object for invoking the next filter in the chain.
+     * @param request 수신된 요청을 나타내는 HttpServletRequest 객체입니다.
+     * @param response 응답을 나타내는 HttpServletResponse 객체입니다.
+     * @param filterChain 체인에서 다음 필터를 호출하기 위한 FilterChain 객체입니다.
      */
     override fun doFilterInternal(
         request: HttpServletRequest,

@@ -12,7 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 /**
- * Configuration class for security-related settings.
+ * 보안 관련 설정을 위한 설정 클래스입니다.
  */
 @Configuration
 @EnableWebSecurity
@@ -22,10 +22,10 @@ class SecurityConfig(
 ) {
 
     /**
-     * Defines the security filter chain.
+     * 보안 필터 체인을 정의합니다.
      *
-     * @param http The HttpSecurity object to configure security settings.
-     * @return The SecurityFilterChain instance defining the security filter chain.
+     * @param http 보안 설정을 구성하는 HttpSecurity 객체입니다.
+     * @return 보안 필터 체인을 정의하는 SecurityFilterChain 인스턴스 입니다.
      */
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {

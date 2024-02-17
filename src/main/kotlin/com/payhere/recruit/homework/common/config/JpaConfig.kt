@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 
 /**
- * Configuration class for JPA-related settings and beans.
+ * JPA 관련 설정 및 Bean을 정의하는 설정 클래스입니다.
  */
 @Configuration
 @EnableJpaAuditing
@@ -18,9 +18,9 @@ class JpaConfig(
 ) {
 
     /**
-     * Defines a bean for creating a JPAQueryFactory instance.
+     * JPAQueryFactory 인스턴스를 생성하기 위한 빈을 정의합니다.
      *
-     * @return A JPAQueryFactory instance created using the provided EntityManager.
+     * @return 제공된 EntityManager를 사용하여 생성된 JPAQueryFactory 인스턴스 입니다.
      */
     @Bean
     fun jpaQueryFactory(): JPAQueryFactory = JPAQueryFactory(entityManager)

@@ -1,7 +1,7 @@
 package com.payhere.recruit.homework.common.filter
 
 import com.payhere.recruit.homework.common.util.JwtUtil
-import com.payhere.recruit.homework.service.LoadMemberUseCase
+import com.payhere.recruit.homework.member.service.LoadMemberUseCase
 import io.jsonwebtoken.JwtException
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
@@ -14,10 +14,10 @@ import org.springframework.util.StringUtils
 import org.springframework.web.filter.OncePerRequestFilter
 
 /**
- * Component class for filtering and authenticating JWT tokens in requests.
+ * 요청에서 JWT 토큰을 필터링하고 인증하는 컴포넌트 클래스입니다.
  *
- * @property jwtUtil The JwtUtil instance for token operations.
- * @property loadMemberUseCase The LoadMemberUseCase instance for loading member details.
+ * @property jwtUtil 토큰 작업을 위한 JwtUtil 인스턴스입니다.
+ * @property loadMemberUseCase 회원 세부 정보를 로드하기 위한 LoadMemberUseCase 인스턴스입니다.
  */
 @Component
 class JwtAuthenticationFilter(
@@ -26,11 +26,11 @@ class JwtAuthenticationFilter(
 ) : OncePerRequestFilter() {
 
     /**
-     * Filters and authenticates JWT tokens in incoming requests.
+     * 요청에서 JWT 토큰을 필터링하고 인증합니다.
      *
-     * @param request The HttpServletRequest object representing the incoming request.
-     * @param response The HttpServletResponse object representing the response.
-     * @param filterChain The FilterChain object for invoking the next filter in the chain.
+     * @param request 수신된 요청을 나타내는 HttpServletRequest 객체입니다.
+     * @param response 응답을 나타내는 HttpServletResponse 객체입니다.
+     * @param filterChain 체인에서 다음 필터를 호출하기 위한 FilterChain 객체입니다.
      */
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -60,3 +60,4 @@ class JwtAuthenticationFilter(
         filterChain.doFilter(request, response)
     }
 }
+
