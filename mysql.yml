@@ -1,0 +1,19 @@
+version: '3'
+services:
+  test-db:
+    image: mysql:5.7
+    container_name: mysql-container
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      TZ: Asia/Seoul
+      MYSQL_DATABASE: 'homework-db'
+      MYSQL_USER: 'payhere'
+      MYSQL_PASSWORD: 'payhere'
+    volumes:
+      - ./test-db:/var/lib/mysql
+      - ./test-db:/var/lib/mysql-files
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    platform: linux/amd64

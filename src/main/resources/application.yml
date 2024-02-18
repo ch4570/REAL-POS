@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
-    url: jdbc:mysql://localhost:3306/your_database_name?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/homework-db?useUnicode=true&characterEncoding=utf-8
 
   # JPA Open-In-view
   jpa:
@@ -16,15 +16,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    generate-ddl: true
-
-
-decorator.datasource.p6spy:
-  enable-logging: true
-  multiline: true
-  logging: slf4j
-  tracing.include-parameter-values: true
-
+  sql:
+    init:
+      mode: always
+#    generate-ddl: true
 
 # Log Setting
 logging:
