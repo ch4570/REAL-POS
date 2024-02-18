@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "MEMBER")
-data class MemberJpaEntity(
+class MemberJpaEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_ID")
     val memberId: Long? = null,

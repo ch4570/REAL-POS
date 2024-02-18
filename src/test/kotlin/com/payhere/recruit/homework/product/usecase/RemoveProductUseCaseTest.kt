@@ -1,18 +1,21 @@
 package com.payhere.recruit.homework.product.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.product.domain.entity.ProductJpaEntity
 import com.payhere.recruit.homework.product.repository.ProductRepository
 import com.payhere.recruit.homework.product.service.impl.RemoveProductService
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.*
+import org.springframework.context.annotation.Import
 import java.util.*
 
-internal class RemoveProductUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class RemoveProductUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     val productRepository = mockk<ProductRepository>()
     val removeProductService = RemoveProductService(productRepository)
-    val fixture = kotlinFixture()
 
     Given("등록된 상품을 삭제하려고 하는 상황에서") {
         val productId = 1L

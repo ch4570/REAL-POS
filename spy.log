@@ -1,0 +1,15 @@
+1708251578240|0|statement|connection 22|url jdbc:h2:mem:5905bc36-6e85-49a6-8f31-2e2c732a080c|drop table if exists category cascade |drop table if exists category cascade 
+1708251578241|0|statement|connection 22|url jdbc:h2:mem:5905bc36-6e85-49a6-8f31-2e2c732a080c|drop table if exists jwt_token cascade |drop table if exists jwt_token cascade 
+1708251578241|0|statement|connection 22|url jdbc:h2:mem:5905bc36-6e85-49a6-8f31-2e2c732a080c|drop table if exists member cascade |drop table if exists member cascade 
+1708251578242|0|statement|connection 22|url jdbc:h2:mem:5905bc36-6e85-49a6-8f31-2e2c732a080c|drop table if exists product cascade |drop table if exists product cascade 
+1708251578242|0|statement|connection 22|url jdbc:h2:mem:5905bc36-6e85-49a6-8f31-2e2c732a080c|drop table if exists product_search cascade |drop table if exists product_search cascade 
+1708253449046|0|statement|connection 41|url jdbc:h2:mem:7f3edafc-b51c-4d8c-a048-7518a26dc61a|drop table if exists category cascade |drop table if exists category cascade 
+1708253449047|0|statement|connection 41|url jdbc:h2:mem:7f3edafc-b51c-4d8c-a048-7518a26dc61a|drop table if exists jwt_token cascade |drop table if exists jwt_token cascade 
+1708253449047|0|statement|connection 41|url jdbc:h2:mem:7f3edafc-b51c-4d8c-a048-7518a26dc61a|drop table if exists member cascade |drop table if exists member cascade 
+1708253449047|0|statement|connection 41|url jdbc:h2:mem:7f3edafc-b51c-4d8c-a048-7518a26dc61a|drop table if exists product cascade |drop table if exists product cascade 
+1708253449048|0|statement|connection 41|url jdbc:h2:mem:7f3edafc-b51c-4d8c-a048-7518a26dc61a|drop table if exists product_search cascade |drop table if exists product_search cascade 
+1708253449050|0|statement|connection 42|url jdbc:h2:mem:a752d530-7ac8-45c7-ab23-f238c06ae107|drop table if exists category cascade |drop table if exists category cascade 
+1708253449051|0|statement|connection 42|url jdbc:h2:mem:a752d530-7ac8-45c7-ab23-f238c06ae107|drop table if exists jwt_token cascade |drop table if exists jwt_token cascade 
+1708253449051|0|statement|connection 42|url jdbc:h2:mem:a752d530-7ac8-45c7-ab23-f238c06ae107|drop table if exists member cascade |drop table if exists member cascade 
+1708253449052|0|statement|connection 42|url jdbc:h2:mem:a752d530-7ac8-45c7-ab23-f238c06ae107|drop table if exists product cascade |drop table if exists product cascade 
+1708253449052|0|statement|connection 42|url jdbc:h2:mem:a752d530-7ac8-45c7-ab23-f238c06ae107|drop table if exists product_search cascade |drop table if exists product_search cascade 

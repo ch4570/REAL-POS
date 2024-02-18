@@ -1,6 +1,6 @@
 package com.payhere.recruit.homework.member.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.common.exception.CustomException
 import com.payhere.recruit.homework.common.exception.ErrorCode.*
 import com.payhere.recruit.homework.common.util.PasswordEncrypter
@@ -16,16 +16,20 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.springframework.context.annotation.Import
 import java.util.*
 
-internal class LoginMemberUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class LoginMemberUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     isolationMode = IsolationMode.InstancePerLeaf
+
     val passwordEncrypter = mockk<PasswordEncrypter>()
     val memberRepository = mockk<MemberRepository>()
     val createJwtTokenUseCase = mockk<CreateJwtTokenUseCase>()
     val loginMemberUseCase = LoginMemberService(passwordEncrypter, memberRepository, createJwtTokenUseCase)
-    val fixture = kotlinFixture()
 
     Given("올바른 아이디와 비밀번호로 회원 로그인을 시도하는 상황에서") {
         val loginMemberCommand = fixture<LoginMemberCommand>()

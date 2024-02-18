@@ -1,6 +1,6 @@
 package com.payhere.recruit.homework.product.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.common.util.LocalDateTimeConverter
 import com.payhere.recruit.homework.product.domain.dto.request.ModifyProductCommand
 import com.payhere.recruit.homework.product.domain.entity.ProductJpaEntity
@@ -11,13 +11,16 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.springframework.context.annotation.Import
 import java.util.*
 
-internal class ModifyProductUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class ModifyProductUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     val productRepository = mockk<ProductRepository>()
     val modifyProductUseCase = ModifyProductService(productRepository)
-    val fixture = kotlinFixture()
 
     Given("등록된 상품의 정보를 수정하려는 상황에서") {
         val expirationDate = "2023-11-23 14:23:55"

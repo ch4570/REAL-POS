@@ -1,6 +1,6 @@
 package com.payhere.recruit.homework.product.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.product.domain.dto.response.ProductDetailResponse
 import com.payhere.recruit.homework.product.domain.dto.response.ProductResponse
 import com.payhere.recruit.homework.product.repository.query.ProductQueryRepository
@@ -11,15 +11,18 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.springframework.context.annotation.Import
 import java.util.*
 
-internal class LoadProductUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class LoadProductUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     isolationMode = IsolationMode.InstancePerLeaf
 
     val productQueryRepository = mockk<ProductQueryRepository>()
     val loadProductUseCase = LoadProductService(productQueryRepository)
-    val fixture = kotlinFixture()
 
     Given("존재하는 특정 제품의 세부 정보를 조회 하려고 하는 상황에서") {
         val productId = 1L

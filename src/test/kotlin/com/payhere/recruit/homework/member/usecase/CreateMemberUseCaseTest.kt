@@ -1,6 +1,6 @@
 package com.payhere.recruit.homework.member.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.common.exception.CustomException
 import com.payhere.recruit.homework.common.exception.ErrorCode.*
 import com.payhere.recruit.homework.common.util.PasswordEncrypter
@@ -15,15 +15,18 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.springframework.context.annotation.Import
 
-internal class CreateMemberUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class CreateMemberUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     isolationMode = IsolationMode.InstancePerLeaf
 
     val memberRepository = mockk<MemberRepository>()
     val passwordEncrypter = mockk<PasswordEncrypter>()
     val createMemberUseCase = CreateMemberService(memberRepository, passwordEncrypter)
-    val fixture = kotlinFixture()
 
     Given("존재하지 않는 신규 회원을 저장하려는 상황에서") {
         val encodedPassword = "encodePassword"

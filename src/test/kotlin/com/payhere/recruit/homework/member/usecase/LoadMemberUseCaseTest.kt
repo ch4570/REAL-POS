@@ -1,6 +1,6 @@
 package com.payhere.recruit.homework.member.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.common.exception.CustomException
 import com.payhere.recruit.homework.common.exception.ErrorCode.*
 import com.payhere.recruit.homework.member.domain.entity.MemberJpaEntity
@@ -13,15 +13,18 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.springframework.context.annotation.Import
 import java.util.*
 
-internal class LoadMemberUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class LoadMemberUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     isolationMode = IsolationMode.InstancePerLeaf
 
     val memberRepository = mockk<MemberRepository>()
     val loadMemberUseCase = LoadMemberService(memberRepository)
-    val fixture = kotlinFixture()
 
     Given("현재 존재하는 회원을 조회하려는 상황에서") {
         val phoneNumber = "010-1111-1111"

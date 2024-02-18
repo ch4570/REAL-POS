@@ -1,18 +1,21 @@
 package com.payhere.recruit.homework.product.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.product.domain.entity.ProductSearchJpaEntity
 import com.payhere.recruit.homework.product.repository.ProductSearchRepository
 import com.payhere.recruit.homework.product.service.impl.CreateProductSearchService
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.*
+import org.springframework.context.annotation.Import
 
-internal class CreateProductSearchUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class CreateProductSearchUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     val productSearchRepository = mockk<ProductSearchRepository>()
     val createProductSearchUseCase = CreateProductSearchService(productSearchRepository)
-    val fixture = kotlinFixture()
 
     Given("상품 키워드 검색용 데이터가 전송된 상태에서") {
         val productSearchId = 1L

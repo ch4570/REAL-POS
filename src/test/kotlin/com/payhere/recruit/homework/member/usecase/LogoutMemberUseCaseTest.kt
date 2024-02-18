@@ -1,6 +1,6 @@
 package com.payhere.recruit.homework.member.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.member.domain.dto.request.LogoutMemberCommand
 import com.payhere.recruit.homework.member.domain.entity.JwtTokenJpaEntity
 import com.payhere.recruit.homework.member.repository.JwtTokenRepository
@@ -8,15 +8,18 @@ import com.payhere.recruit.homework.member.service.impl.LogoutMemberService
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.BehaviorSpec
 import io.mockk.*
+import org.springframework.context.annotation.Import
 import java.util.*
 
-internal class LogoutMemberUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class LogoutMemberUseCaseTest(
+    private val fixture: Fixture
+) : BehaviorSpec({
 
     isolationMode = IsolationMode.InstancePerLeaf
 
     val jwtTokenRepository = mockk<JwtTokenRepository>()
     val logoutMemberUseCase = LogoutMemberService(jwtTokenRepository)
-    val fixture = kotlinFixture()
 
     Given("현재 토큰이 유효한 상태로 로그아웃을 시도하는 상황에서") {
         val logoutMemberCommand = fixture<LogoutMemberCommand>()

@@ -21,3 +21,4 @@ class JwtTokenJpaEntity(
     @Column(name = "ACCESS_TOKEN", columnDefinition = "BLOB")
     val accessToken: String
 ) : BaseTimeEntity()
+

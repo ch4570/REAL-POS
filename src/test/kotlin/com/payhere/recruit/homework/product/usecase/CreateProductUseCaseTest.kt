@@ -1,6 +1,6 @@
 package com.payhere.recruit.homework.product.usecase
 
-import com.appmattus.kotlinfixture.kotlinFixture
+import com.appmattus.kotlinfixture.Fixture
 import com.payhere.recruit.homework.common.exception.CustomException
 import com.payhere.recruit.homework.common.exception.ErrorCode.*
 import com.payhere.recruit.homework.product.domain.dto.request.CreateProductCommand
@@ -14,13 +14,16 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
+import org.springframework.context.annotation.Import
 
-internal class CreateProductUseCaseTest : BehaviorSpec({
+@Import(Fixture::class)
+internal class CreateProductUseCaseTest(
+    fixture: Fixture
+) : BehaviorSpec({
 
     val productRepository = mockk<ProductRepository>()
     val createProductSearchUseCase = mockk<CreateProductSearchUseCase>(relaxed = true)
     val createProductUseCase = CreateProductService(productRepository, createProductSearchUseCase)
-    val fixture = kotlinFixture()
 
     Given("중복되지 않은 상품 등록을 위한 데이터가 전송된 상태에서") {
         val productId = 1L
