@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Pattern
+import org.springframework.format.annotation.DateTimeFormat
 
 /**
  * 제품을 수정하는 데 사용되는 명령을 나타내는 데이터 클래스입니다.
@@ -41,10 +42,7 @@ data class ModifyProductCommand(
     val barcode: String,
 
     @field:NotBlank(message = "유통 기한은 필수 입력 값입니다.")
-    @field:Pattern(
-        regexp = "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\$",
-        message = "날짜 형식에 맞지 않는 입력입니다. yyyy-MM-dd HH:mm:ss 형식을 맞춰주세요"
-    )
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     val expirationDate: String,
 
     @field:NotNull(message = "상품 사이즈는 필수 입력 값입니다.")

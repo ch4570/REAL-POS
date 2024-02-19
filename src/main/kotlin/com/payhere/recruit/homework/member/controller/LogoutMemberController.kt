@@ -5,6 +5,7 @@ import com.payhere.recruit.homework.common.dto.BaseResponse
 import com.payhere.recruit.homework.common.exception.CustomException
 import com.payhere.recruit.homework.common.exception.ErrorCode.*
 import com.payhere.recruit.homework.member.service.LogoutMemberUseCase
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.PostMapping
@@ -30,7 +31,7 @@ class LogoutMemberController(
      * @throws CustomException 유효성 검사 오류가 있는 경우 발생합니다.
      */
     @PostMapping("/api/logout")
-    fun logoutMember(@RequestBody logoutMemberCommand: LogoutMemberCommand, bindingResult: BindingResult) :
+    fun logoutMember(@RequestBody @Valid logoutMemberCommand: LogoutMemberCommand, bindingResult: BindingResult) :
             ResponseEntity<BaseResponse<Any?>> {
         if (bindingResult.hasErrors()) throw CustomException(INVALID_INPUT_DATA)
 

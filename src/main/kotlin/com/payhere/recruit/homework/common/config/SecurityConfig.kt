@@ -38,7 +38,6 @@ class SecurityConfig(
                 request.requestMatchers(HttpMethod.POST, "/api/members/**").permitAll()
                 request.requestMatchers(HttpMethod.POST, "/api/login/**").permitAll()
                 request.requestMatchers(HttpMethod.POST, "/api/logout/**").permitAll()
-                request.requestMatchers(HttpMethod.GET, "/api/token/**")
                 request.anyRequest().authenticated()
             }
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)

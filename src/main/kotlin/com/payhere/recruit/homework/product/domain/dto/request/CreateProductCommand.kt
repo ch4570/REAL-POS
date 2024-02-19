@@ -1,12 +1,12 @@
 package com.payhere.recruit.homework.product.domain.dto.request
 
-import com.payhere.recruit.homework.common.util.LocalDateTimeConverter.Companion.convertToLocalDateTime
 import com.payhere.recruit.homework.product.domain.entity.ProductJpaEntity
 import com.payhere.recruit.homework.product.domain.entity.Size
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
-import jakarta.validation.constraints.Pattern
+import org.springframework.format.annotation.DateTimeFormat
+import java.time.LocalDateTime
 
 /**
  * 제품을 생성하는 데 사용되는 명령을 나타내는 데이터 클래스입니다.
@@ -42,12 +42,8 @@ data class CreateProductCommand(
     @field:NotBlank(message = "바코드는 필수 입력 값입니다.")
     val barcode: String,
 
-    @field:NotBlank(message = "유통 기한은 필수 입력 값입니다.")
-    @field:Pattern(
-        regexp = "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\$",
-        message = "날짜 형식에 맞지 않는 입력입니다. yyyy-MM-dd HH:mm:ss 형식을 맞춰주세요"
-    )
-    val expirationDate: String,
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    val expirationDate: LocalDateTime,
 
     @field:NotNull(message = "상품 사이즈는 필수 입력 값입니다.")
     val productSize: Size
@@ -64,7 +60,7 @@ data class CreateProductCommand(
             price = price,
             description = description,
             barcode = barcode,
-            expirationDate = convertToLocalDateTime(expirationDate),
+            expirationDate = expirationDate,
             productSize = productSize,
             productName = productName
         )

@@ -4,6 +4,7 @@ import com.payhere.recruit.homework.member.domain.dto.request.LoginMemberCommand
 import com.payhere.recruit.homework.common.dto.BaseResponse
 import com.payhere.recruit.homework.common.exception.CustomException
 import com.payhere.recruit.homework.common.exception.ErrorCode.*
+import com.payhere.recruit.homework.member.service.LoginMemberUseCase
 import com.payhere.recruit.homework.member.service.impl.LoginMemberService
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
@@ -15,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController
 /**
  * 회원 로그인을 처리하는 컨트롤러 클래스입니다.
  *
- * @property loginMemberService 회원 로그인을 위한 LoginMemberService 인스턴스입니다.
+ * @property loginMemberUseCase 회원 로그인을 위한 loginMemberUseCase 인스턴스입니다.
  */
 @RestController
 class LoginMemberController(
-    private val loginMemberService: LoginMemberService,
+    private val loginMemberUseCase: LoginMemberUseCase
 ) {
 
     /**
@@ -35,7 +36,7 @@ class LoginMemberController(
             ResponseEntity<BaseResponse<String>> {
 
         if (bindingResult.hasErrors()) throw CustomException(INVALID_INPUT_DATA)
-        val jwtToken = loginMemberService.login(loginMemberCommand)
+        val jwtToken = loginMemberUseCase.login(loginMemberCommand)
 
         return ResponseEntity.ok(BaseResponse.ok(jwtToken))
     }

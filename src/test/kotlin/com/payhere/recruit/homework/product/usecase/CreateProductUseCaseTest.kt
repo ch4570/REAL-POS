@@ -28,9 +28,8 @@ internal class CreateProductUseCaseTest(
     Given("중복되지 않은 상품 등록을 위한 데이터가 전송된 상태에서") {
         val productId = 1L
 
-        val createProductCommand = fixture<CreateProductCommand> {
-            property<CreateProductCommand, String>("expirationDate") { "2023-11-23 23:12:35" }
-        }
+        val createProductCommand = fixture<CreateProductCommand>()
+
         val productEntity = fixture<ProductJpaEntity> {
             property<ProductJpaEntity, Long?>("productId") { productId }
         }
@@ -51,9 +50,8 @@ internal class CreateProductUseCaseTest(
     Given("중복된 상품 등록을 위한 데이터가 전송된 상태에서") {
         val productId = 1L
 
-        val createProductCommand = fixture<CreateProductCommand> {
-            property<CreateProductCommand, String>("expirationDate") { "2023-11-23 23:12:35" }
-        }
+        val createProductCommand = fixture<CreateProductCommand>()
+
         val productEntity = fixture<ProductJpaEntity> {
             property<ProductJpaEntity, Long?>("productId") { productId }
         }
