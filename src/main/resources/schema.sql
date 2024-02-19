@@ -10,7 +10,7 @@ create table if not exists JWT_TOKEN(
 create table if not exists MEMBER(
     MEMBER_ID bigint auto_increment primary key,
     PHONE_NUMBER varchar(20) not null,
-    PASSWORD varchar(100) not null,
+    MEMBER_PASSWORD varchar(100) not null,
     REG_DATE timestamp not null default current_timestamp,
     MOD_DATE TIMESTAMP not null default current_timestamp
 );
@@ -28,6 +28,7 @@ create table if not exists PRODUCT(
     PRODUCT_COST integer not null,
     PRODUCT_PRICE integer not null,
     PRODUCT_NAME varchar(100) not null,
+    PRODUCT_BARCODE varchar(100) not null,
     PRODUCT_DESCRIPTION text not null,
     PRODUCT_EXPIRATION_DATE timestamp not null,
     PRODUCT_SIZE varchar(20) not null,

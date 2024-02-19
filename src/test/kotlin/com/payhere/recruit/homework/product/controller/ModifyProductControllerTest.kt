@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import java.time.LocalDateTime
 
 @SpringBootTest
 @Import(Fixture::class)
@@ -46,7 +47,7 @@ internal class ModifyProductControllerTest(
                 description = "달콤한 바닐라 라떼의 참맛을 느껴보세요",
                 productName = "바닐라 라떼",
                 barcode = "98239481038129038102",
-                expirationDate = "2023-03-11 21:23:53",
+                expirationDate = LocalDateTime.now(),
                 productSize = Small
             )
 

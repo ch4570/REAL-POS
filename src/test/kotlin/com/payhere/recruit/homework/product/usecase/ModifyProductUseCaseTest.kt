@@ -23,11 +23,9 @@ internal class ModifyProductUseCaseTest(
     val modifyProductUseCase = ModifyProductService(productRepository)
 
     Given("등록된 상품의 정보를 수정하려는 상황에서") {
-        val expirationDate = "2023-11-23 14:23:55"
         val productName = "슈크림 붕어빵"
 
         val modifyProductCommand = fixture<ModifyProductCommand> {
-            property<ModifyProductCommand, String>("expirationDate") { expirationDate }
             property<ModifyProductCommand, String>("productName") { productName }
         }
 
@@ -40,7 +38,7 @@ internal class ModifyProductUseCaseTest(
 
             Then("상품의 정보가 정상적으로 수정되어야 한다") {
                 productEntity.productName shouldBe productName
-                productEntity.expirationDate shouldBe LocalDateTimeConverter.convertToLocalDateTime(expirationDate)
+                productEntity.expirationDate shouldBe modifyProductCommand.expirationDate
                 verify(exactly = 1) { productRepository.findById(any()) }
             }
         }

@@ -26,6 +26,7 @@ data class ProductDetailResponse(
     val productName: String,
     val description: String,
     val barcode: String,
+
     val expirationDate: LocalDateTime,
     val productSize: Size,
     val regDate: LocalDateTime,

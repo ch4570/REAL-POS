@@ -46,7 +46,7 @@ class ProductJpaEntity(
         description = modifyProductCommand.description
         productName = modifyProductCommand.productName
         barcode = modifyProductCommand.barcode
-        expirationDate = convertToLocalDateTime(modifyProductCommand.expirationDate)
+        expirationDate = modifyProductCommand.expirationDate
         productSize = modifyProductCommand.productSize
     }
 }
